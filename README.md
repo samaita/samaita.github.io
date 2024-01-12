@@ -2,5 +2,5 @@
 
 ```
 npm install -g live-server
-npx http-server
+live-server
 ```
