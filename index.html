@@ -1,7 +1,20 @@
-<html>
-  <head></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htmx Hello World</title>
+    <script src="https://unpkg.com/htmx.org@1.7.0/dist/htmx.min.js"></script>
+</head>
+<body>
 
-  <body>
-    <h1>Hello World</h1>
-  </body>
+    <h1>Hello, MasGar! Welcome to htmx Hello World!</h1>
+
+    <p>This is a simple landing page using htmx.</p>
+
+    <button hx-get="https://raw.githubusercontent.com/samaita/samaita.github.io/master/README.md" hx-target="#greeting">Click me</button>
+
+    <div id="greeting"></div>
+
+</body>
 </html>
