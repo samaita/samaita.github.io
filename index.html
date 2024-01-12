@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>htmx Hello World</title>
-    <script src="https://unpkg.com/htmx.org@1.7.0/dist/htmx.min.js"></script>
+    <title>GitHub Markdown Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org/dist/htmx.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
-    <h1>Hello, MasGar! Welcome to htmx Hello World!</h1>
+    <h1>GitHub Markdown Viewer</h1>
 
-    <p>This is a simple landing page using htmx.</p>
+    <button hx-get="/hello" hx-target="#result">Load Markdown Content</button>
 
-    <button hx-get="https://raw.githubusercontent.com/samaita/samaita.github.io/master/README.md" hx-target="#greeting">Click me</button>
-
-    <div id="greeting"></div>
+    <div id="result"></div>
+    <div hx-get="/hello/hello.md" hx-trigger="load">
+      Loading Markdown content...
+    </div>
 
 </body>
+
+<script>
+  document.addEventListener('htmx:load', function(event) {
+  if (event.detail.xhr.responseType === 'text') {
+    const markdownContent = event.detail.xhr.responseText;
+    const htmlContent = marked(markdownContent);
+    event.detail.target.innerHTML = htmlContent;
+  }
+});
+</script>
 </html>
